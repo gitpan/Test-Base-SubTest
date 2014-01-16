@@ -1,5 +1,5 @@
 {
-   "abstract" : "Enables Test::Base to use subtest",
+   "abstract" : "Enables Test::Base using subtest",
    "author" : [
       "Hiroki Honda <cside.story@gmail.com>"
    ],
@@ -73,10 +73,11 @@
    "provides" : {
       "Test::Base::SubTest" : {
          "file" : "lib/Test/Base/SubTest.pm",
-         "version" : "0.2"
+         "version" : "0.3"
       },
       "Text::TestBase::SubTest" : {
-         "file" : "lib/Text/TestBase/SubTest.pm"
+         "file" : "lib/Text/TestBase/SubTest.pm",
+         "version" : "0.3"
       },
       "Text::TestBase::SubTest::Node" : {
          "file" : "lib/Text/TestBase/SubTest/Node.pm"
@@ -102,5 +103,5 @@
          "web" : "https://github.com/Cside/Test-Base-SubTest"
       }
    },
-   "version" : "0.2"
+   "version" : "0.3"
 }
