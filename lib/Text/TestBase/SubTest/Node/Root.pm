@@ -12,6 +12,8 @@ sub new {
     );
 }
 
+sub is_root { 1 }
+
 sub last_subtest {
     my ($self, %args) = @_;
     my $target_depth = $args{depth};

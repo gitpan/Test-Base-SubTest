@@ -11,14 +11,13 @@ use Class::Accessor::Lite (
     rw => [qw/subtest_delim/],
 );
 use Carp ();
-our $VERSION = '0.3';
+our $VERSION = '0.4';
 
 sub new {
     my $class = shift;
     my $self = $class->SUPER::new(@_);
     $self->{subtest_delim} = '###';
     $self->{block_class}   = 'Text::TestBase::SubTest::Node::Block';
-    $self->{indent}        = '    ';
     return $self;
 }
 
@@ -26,18 +25,21 @@ sub parse {
     my ($self, $spec) = @_;
     my $block_delim   = $self->block_delim;
     my $subtest_delim = $self->subtest_delim;
-    my $indent        = $self->{indent};
     my $root          = Text::TestBase::SubTest::Node::Root->new;
     my $lineno        = 1;
+    my $indent        = do {
+        my @m = $spec =~ /^(\s{2,}|\t)/m;
+        $m[0] || '    ';
+    };
 
     $spec =~ s/
           ^(
-             [ ]* \Q${subtest_delim}\E.*?
-             (?= ^[ ]* \Q${block_delim}\E | ^[ ]* \Q${subtest_delim}\E | \z )
+             [ \t]* \Q${subtest_delim}\E.*?
+             (?= ^[ \t]* \Q${block_delim}\E | ^[ \t]* \Q${subtest_delim}\E | \z )
            )
         | ^(
-             [ ]* \Q${block_delim}\E .*?
-             (?= ^[ ]* \Q${block_delim}\E | ^[ ]* \Q${subtest_delim}\E | \z )
+             [ \t]* \Q${block_delim}\E .*?
+             (?= ^[ \t]* \Q${block_delim}\E | ^[ \t]* \Q${subtest_delim}\E | \z )
            )
         | ^( [^\n]* \n )
     /
@@ -84,7 +86,7 @@ sub _make_subtest {
 
 sub _unindent {
     my $text = shift;
-    my ($indent) = $text =~ /^( *)/;
+    my ($indent) = $text =~ /^((?:[ \t])*)/;
     $text =~ s/^$indent//mg;
     return $text;
 }

@@ -5,7 +5,7 @@ use utf8;
 use parent qw(Exporter);
 our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter run run_is run_is_deeply/);
 
-our $VERSION = '0.3';
+our $VERSION = '0.4';
 
 use parent qw/
     Test::Base::Less
@@ -37,8 +37,10 @@ sub run(&) {
     });
 }
 
-sub run_is($$) {
+sub run_is {
     my ($a, $b) = @_;
+    $a ||= 'input';
+    $b ||= 'expected';
     my $content = _get_data_section();
     my $node = Text::TestBase::SubTest->new->parse($content);
 
@@ -54,6 +56,8 @@ sub run_is($$) {
 
 sub run_is_deeply($$) {
     my ($a, $b) = @_;
+    $a ||= 'input';
+    $b ||= 'expected';
     my $package = scalar(caller(0));
 
     my $content = _get_data_section();
@@ -99,8 +103,7 @@ sub _exec_each_test {
                     $node->set_section($section_name => @data);
                 }
                 if ($node->has_section('ONLY')) {
-                    Carp::croak "Sorry, section 'ONLY' is not implemented...";
-                    #  これLASTと全く一緒じゃね？
+                    Carp::croak "Sorry, section 'ONLY' is not implemented... Patches welcome.";
                     __PACKAGE__->builder->diag("I found ONLY: maybe you're debugging?");
                     $SKIP = 1;
                     $code->($node);
@@ -119,12 +122,12 @@ sub _exec_each_test {
             }
         }
     };
-    if ($subtest->depth == 0) {
+    if ($subtest->is_root) {
         $executer->();
     } else {
         return if $SKIP;
         __PACKAGE__->builder->subtest(
-            ($subtest->name || 'XXX lineno here') => $executer
+            ($subtest->name || 'L: ' . $subtest->get_lineno) => $executer
         );
     }
 }
@@ -179,6 +182,12 @@ Test::Base::Less - Enables Test::Base using subtest
 <div><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/C/Cside/20140116/20140116204246.png?1389872580"></div>
 
 =end html
+
+=head1 DESCRIPTION
+
+Test::Base::SubTest is a extension of L<Test::Base::Less>.
+
+"### TEST NAME" is a delimiter of a subtest. Indentaion is necessary.
 
 =head1 FUNCTIONS
 
@@ -259,7 +268,7 @@ You can use a CodeRef as filter.
 
 =head1 SEE ALSO
 
-Most of code is taken from L<Test::Base::Less>.
+Most of code is taken from L<Test::Base::Less>. Thank you very match, tokuhirom.
 
 =head1 AUTHOR
 

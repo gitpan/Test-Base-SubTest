@@ -22,6 +22,7 @@ t/test-base/05_test.t
 t/test-base/06_test_base_less_custom_filters.t
 t/test-base/07_test_base_less_run.t
 t/test-base/default_filters.t
+t/test-base/default_subtest_name.t
 t/test-base/multiline.t
 t/test-base/run_is_deeply.t
 t/text-testbase/_parse.t

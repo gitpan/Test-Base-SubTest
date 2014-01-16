@@ -31,6 +31,12 @@ Test::Base::Less - Enables Test::Base using subtest
 
 <div><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/C/Cside/20140116/20140116204246.png?1389872580"></div>
 
+# DESCRIPTION
+
+Test::Base::SubTest is a extension of [Test::Base::Less](https://metacpan.org/pod/Test::Base::Less).
+
+"\#\#\# TEST NAME" is a delimiter of a subtest. Indentaion is necessary.
+
 # FUNCTIONS
 
 This module exports all Test::More's exportable functions, and following functions:
@@ -100,7 +106,7 @@ You can use a CodeRef as filter.
 
 # SEE ALSO
 
-Most of code is taken from [Test::Base::Less](https://metacpan.org/pod/Test::Base::Less).
+Most of code is taken from [Test::Base::Less](https://metacpan.org/pod/Test::Base::Less). Thank you very match, tokuhirom.
 
 # AUTHOR
 

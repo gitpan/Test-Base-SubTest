@@ -32,6 +32,38 @@ subtest indent => sub {
         ok $root->child_subtests(0)->child_subtests(1)->is_subtest;
         is $root->child_subtests(0)->child_subtests(1)->name, 'foobar';
     }
+    {
+        my $hunk = <<'...';
+### foo
+  ### bar
+    ### baz
+  ### foobar
+...
+        my $root = Text::TestBase::SubTest->new->parse($hunk);
+
+        is $root->child_subtests(0)->name, 'foo';
+        ok $root->child_subtests(0)->child_subtests(0)->is_subtest;
+        is $root->child_subtests(0)->child_subtests(0)->name, 'bar';
+        is $root->child_subtests(0)->child_subtests(0)->child_subtests(0)->name, 'baz';
+        ok $root->child_subtests(0)->child_subtests(1)->is_subtest;
+        is $root->child_subtests(0)->child_subtests(1)->name, 'foobar';
+    }
+    {
+        my $hunk = <<'...';
+### foo
+	### bar
+		### baz
+	### foobar
+...
+        my $root = Text::TestBase::SubTest->new->parse($hunk);
+
+        is $root->child_subtests(0)->name, 'foo';
+        ok $root->child_subtests(0)->child_subtests(0)->is_subtest;
+        is $root->child_subtests(0)->child_subtests(0)->name, 'bar';
+        is $root->child_subtests(0)->child_subtests(0)->child_subtests(0)->name, 'baz';
+        ok $root->child_subtests(0)->child_subtests(1)->is_subtest;
+        is $root->child_subtests(0)->child_subtests(1)->name, 'foobar';
+    }
 };
 
 subtest 'subtest + block'   => sub {

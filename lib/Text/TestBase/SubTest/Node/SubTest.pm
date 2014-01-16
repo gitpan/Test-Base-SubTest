@@ -17,6 +17,7 @@ sub get_lineno { return $_[0]->{_lineno} }
 
 sub is_subtest { 1 }
 sub is_block   { 0 }
+sub is_root    { 0 }
 
 sub child_nodes { # ro
     my ($self, $i) = @_;
