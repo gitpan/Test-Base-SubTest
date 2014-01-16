@@ -5,7 +5,7 @@ use utf8;
 use parent qw(Exporter);
 our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter run run_is run_is_deeply/);
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 use parent qw/
     Test::Base::Less

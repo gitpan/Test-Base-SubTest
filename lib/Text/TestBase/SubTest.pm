@@ -2,7 +2,6 @@ package Text::TestBase::SubTest;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.1';
 use parent qw(Text::TestBase);
 use Text::TestBase::SubTest::Node::Block;
 use Text::TestBase::SubTest::Node::SubTest;
@@ -45,7 +44,7 @@ sub parse {
         if ($1) {
             my $hunk         = _unindent($1);
             my $subtest      = $self->_make_subtest($hunk, $lineno);
-            my $prev_subtest = $root->last_subtest( depth => _depth($1, $indent) - 1 );
+            my $prev_subtest = $root->last_subtest( depth => _depth($1, $indent) - 1 ) || $root;
 
             $lineno++;
             $prev_subtest->append_child($subtest);
@@ -54,7 +53,7 @@ sub parse {
         } elsif ($2) {
             my $hunk         = _unindent($2);
             my $block        = $self->_make_block($hunk, $lineno);
-            my $prev_subtest = $root->last_subtest( depth => _depth($2, $indent) - 1 );
+            my $prev_subtest = $root->last_subtest( depth => _depth($2, $indent) - 1 ) || $root;
 
             $hunk =~ s!\n!$lineno++!ge;
             $prev_subtest->append_child($block);

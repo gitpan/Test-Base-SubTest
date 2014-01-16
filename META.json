@@ -73,11 +73,10 @@
    "provides" : {
       "Test::Base::SubTest" : {
          "file" : "lib/Test/Base/SubTest.pm",
-         "version" : "0.1"
+         "version" : "0.2"
       },
       "Text::TestBase::SubTest" : {
-         "file" : "lib/Text/TestBase/SubTest.pm",
-         "version" : "0.1"
+         "file" : "lib/Text/TestBase/SubTest.pm"
       },
       "Text::TestBase::SubTest::Node" : {
          "file" : "lib/Text/TestBase/SubTest/Node.pm"
@@ -103,5 +102,5 @@
          "web" : "https://github.com/Cside/Test-Base-SubTest"
       }
    },
-   "version" : "0.1"
+   "version" : "0.2"
 }
