@@ -11,7 +11,7 @@ use Class::Accessor::Lite (
     rw => [qw/subtest_delim/],
 );
 use Carp ();
-our $VERSION = '0.4';
+our $VERSION = '0.5';
 
 sub new {
     my $class = shift;

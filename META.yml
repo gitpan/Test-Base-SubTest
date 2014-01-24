@@ -1,5 +1,5 @@
 ---
-abstract: 'Enables Test::Base using subtest'
+abstract: 'Enables Test::Base to use subtest'
 author:
   - 'Hiroki Honda <cside.story@gmail.com>'
 build_requires:
@@ -31,10 +31,10 @@ no_index:
 provides:
   Test::Base::SubTest:
     file: lib/Test/Base/SubTest.pm
-    version: 0.4
+    version: 0.5
   Text::TestBase::SubTest:
     file: lib/Text/TestBase/SubTest.pm
-    version: 0.4
+    version: 0.5
   Text::TestBase::SubTest::Node:
     file: lib/Text/TestBase/SubTest/Node.pm
   Text::TestBase::SubTest::Node::Block:
@@ -64,4 +64,4 @@ resources:
   bugtracker: https://github.com/Cside/Test-Base-SubTest/issues
   homepage: https://github.com/Cside/Test-Base-SubTest
   repository: git://github.com/Cside/Test-Base-SubTest.git
-version: 0.4
+version: 0.5

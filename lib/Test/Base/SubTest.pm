@@ -5,7 +5,7 @@ use utf8;
 use parent qw(Exporter);
 our @EXPORT = (@Test::More::EXPORT, qw/filters blocks register_filter run run_is run_is_deeply/);
 
-our $VERSION = '0.4';
+our $VERSION = '0.5';
 
 use parent qw/
     Test::Base::Less
@@ -148,7 +148,7 @@ __END__
 
 =head1 NAME
 
-Test::Base::Less - Enables Test::Base using subtest
+Test::Base::SubTest - Enables Test::Base to use subtest
 
 =head1 SYNOPSIS
 

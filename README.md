@@ -1,6 +1,6 @@
 # NAME
 
-Test::Base::Less - Enables Test::Base using subtest
+Test::Base::SubTest - Enables Test::Base to use subtest
 
 # SYNOPSIS
 
